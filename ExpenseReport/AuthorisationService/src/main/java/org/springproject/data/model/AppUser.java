@@ -1,6 +1,9 @@
 package org.springproject.data.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.stereotype.Indexed;
@@ -8,7 +11,10 @@ import org.springframework.stereotype.Indexed;
 import javax.annotation.processing.Generated;
 import java.time.LocalDateTime;
 
+@Builder
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(indexes = {@Index(name="IDX_EMAIL", columnList = "email")})
 public class AppUser {
 

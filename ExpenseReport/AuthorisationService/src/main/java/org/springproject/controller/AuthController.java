@@ -33,6 +33,8 @@ public class AuthController {
 
         log.info(LoggingConstants.END_INFO_CONSTANT, classname,methodName);
         return  ResponseEntity.status(HttpStatus.CREATED)
-                .body(new AuthResponse(accessToken));
+                .body(AuthResponse.builder()
+                        .accessToken(accessToken)
+                        .build());
     }
 }
