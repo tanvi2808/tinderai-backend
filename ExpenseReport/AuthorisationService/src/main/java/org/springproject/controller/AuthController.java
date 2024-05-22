@@ -4,14 +4,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springproject.constants.LoggingConstants;
 import org.springproject.dto.AuthRequest;
 import org.springproject.dto.AuthResponse;
+import org.springproject.dto.VerifyAccessTokenRequest;
 import org.springproject.mapper.AuthRequestMapper;
+import org.springproject.dto.VerifyAccessTokenResponse;
 import org.springproject.service.AuthService;
 
 @RestController
@@ -35,6 +34,36 @@ public class AuthController {
         return  ResponseEntity.status(HttpStatus.CREATED)
                 .body(AuthResponse.builder()
                         .accessToken(accessToken)
+                        .build());
+    }
+
+    @GetMapping("/login")
+    ResponseEntity<AuthResponse> login(@RequestBody AuthRequest authRequest) {
+        String methodName = "AuthController:login";
+
+        log.info(LoggingConstants.START_INFO_CONSTANT, methodName, authRequest);
+
+        String accessToken = authService.login(AuthRequestMapper.INSTANCE.mapToLogin(authRequest));
+
+        log.info(LoggingConstants.END_INFO_CONSTANT, classname,methodName);
+        return  ResponseEntity.status(HttpStatus.OK)
+                .body(AuthResponse.builder()
+                        .accessToken(accessToken)
+                        .build());
+    }
+
+    @GetMapping("/verify-token")
+    ResponseEntity<VerifyAccessTokenResponse> veriftyAccessToken(@RequestBody VerifyAccessTokenRequest verifyAccessTokenRequest) {
+        String methodName = "AuthController:login";
+
+        log.info(LoggingConstants.START_INFO_CONSTANT, methodName, verifyAccessTokenRequest);
+
+        Long userId = authService.verifyAccessToken(verifyAccessTokenRequest);
+
+        log.info(LoggingConstants.END_INFO_CONSTANT, classname,methodName);
+        return  ResponseEntity.status(HttpStatus.OK)
+                .body(VerifyAccessTokenResponse.builder()
+                        .userId(userId)
                         .build());
     }
 }
