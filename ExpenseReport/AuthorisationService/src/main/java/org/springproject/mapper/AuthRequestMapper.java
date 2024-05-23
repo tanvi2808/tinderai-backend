@@ -3,10 +3,9 @@ package org.springproject.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
-import org.springproject.dto.AuthRequest;
-import org.springproject.model.LoginRequest;
-import org.springproject.model.SignUpRequest;
-import org.springproject.dto.VerifyAccessTokenRequest;
+import org.springproject.dto.auth.AuthRequest;
+import org.springproject.service.model.LoginRequest;
+import org.springproject.service.model.SignUpRequest;
 
 @Mapper
 public interface AuthRequestMapper {

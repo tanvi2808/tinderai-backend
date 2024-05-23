@@ -1,8 +1,8 @@
-package org.springproject.service;
+package org.springproject.service.auth;
 
-import org.springproject.model.LoginRequest;
-import org.springproject.model.SignUpRequest;
-import org.springproject.dto.VerifyAccessTokenRequest;
+import org.springproject.service.model.LoginRequest;
+import org.springproject.service.model.SignUpRequest;
+import org.springproject.dto.auth.VerifyAccessTokenRequest;
 
 public interface AuthService {
 
