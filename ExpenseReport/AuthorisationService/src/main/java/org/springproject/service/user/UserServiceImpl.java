@@ -41,9 +41,9 @@ public class UserServiceImpl implements UserService {
                                     ErrorCodeConstants.USER_NOT_FOUND.getMessage());
                         }
                 );
-        log.info("Created AT :" + appUser.getCreationAt());
+
         UserInfo userInfo = UserInfoMapper.INSTANCE.maptoUserInfo(appUser);
-        log.info("Created AT :" + userInfo.getCreationAt());
+
 
         return UserInfoMapper.INSTANCE.mapToUserInfo(userInfo);
     }
@@ -79,6 +79,50 @@ public class UserServiceImpl implements UserService {
         appUserRepository.save(appUser);
 
         log.info(LoggingConstants.END_INFO_CONSTANT, methodName, "Password updated successfull!!");
+    }
+
+    @Override
+    public UserInfo updateName(Long userId, String username) {
+        String methodName = "UserServiceImpl:updateName";
+        log.info(LoggingConstants.START_INFO_CONSTANT, methodName, username);
+        AppUser appUser = appUserRepository.findById(userId)
+                .orElseThrow(() -> {
+                    log.error(LoggingConstants.ERROR_INFO_CONSTANT, methodName,
+                            userId  + " does not exist");
+                    return new UserNotFoundException(
+                            ErrorCodeConstants.USER_NOT_FOUND.getErrorCode(),
+                            ErrorCodeConstants.USER_NOT_FOUND.getMessage());
+                });
+
+        appUser.setUsername(username);
+        appUser.setModifiedAt(Instant.now());
+
+        AppUser updatedUser = appUserRepository.save(appUser);
+
+        log.info(LoggingConstants.END_INFO_CONSTANT, methodName, userId);
+        return UserInfoMapper.INSTANCE.maptoUserInfo(updatedUser);
+
+    }
+
+    @Override
+    public UserInfo updateEmail(Long userId, String email) {
+        String methodName = "UserServiceImpl:updateEmail";
+        log.info(LoggingConstants.START_INFO_CONSTANT, methodName, userId);
+
+        AppUser appUser = appUserRepository.findById(userId)
+                .orElseThrow(() -> {
+                    log.error(LoggingConstants.ERROR_INFO_CONSTANT, methodName,
+                            userId  + " does not exist");
+                    return new UserNotFoundException(
+                            ErrorCodeConstants.USER_NOT_FOUND.getErrorCode(),
+                            ErrorCodeConstants.USER_NOT_FOUND.getMessage());
+                });
+
+        appUser.setEmail(email);
+        appUser.setModifiedAt(Instant.now());
+        AppUser updatedUser = appUserRepository.save(appUser);
+        log.info(LoggingConstants.END_INFO_CONSTANT, methodName, userId);
+        return UserInfoMapper.INSTANCE.maptoUserInfo(updatedUser);
     }
 }
 

@@ -15,5 +15,5 @@ public class UserInfoDto {
 
     String email;
 
-    String creationAt;
+    String modifiedAt;
 }
