@@ -1,4 +1,4 @@
-package org.springproject.dto;
+package org.springproject.dto.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,22 +1,22 @@
 package org.springproject.data.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.stereotype.Indexed;
 
 import javax.annotation.processing.Generated;
+import java.time.Instant;
 import java.time.LocalDateTime;
 
 @Builder
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
+@Data
 @Table(indexes = {@Index(name="IDX_EMAIL", columnList = "email")})
 public class AppUser {
 
@@ -33,9 +33,9 @@ public class AppUser {
     @Column
     String password;
 
-    @CreatedDate
-    LocalDateTime creationAt;
+    @CreationTimestamp
+    Instant creationAt;
 
-    @LastModifiedDate
-    LocalDateTime modifiedAt;
+    @UpdateTimestamp
+    Instant modifiedAt;
 }

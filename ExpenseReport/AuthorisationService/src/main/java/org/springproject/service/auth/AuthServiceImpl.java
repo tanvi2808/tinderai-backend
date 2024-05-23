@@ -1,4 +1,4 @@
-package org.springproject.service;
+package org.springproject.service.auth;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,9 +13,9 @@ import org.springproject.exception.BadCredentialsException;
 import org.springproject.exception.InvalidAccessTokenException;
 import org.springproject.exception.UserExistsException;
 import org.springproject.exception.UserNotFoundException;
-import org.springproject.model.LoginRequest;
-import org.springproject.model.SignUpRequest;
-import org.springproject.dto.VerifyAccessTokenRequest;
+import org.springproject.service.model.LoginRequest;
+import org.springproject.service.model.SignUpRequest;
+import org.springproject.dto.auth.VerifyAccessTokenRequest;
 import org.springproject.utils.JWTUtils;
 
 @Service

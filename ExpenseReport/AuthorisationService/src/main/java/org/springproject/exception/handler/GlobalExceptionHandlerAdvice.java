@@ -7,10 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springproject.dto.ErrorResponse;
-import org.springproject.exception.BadCredentialsException;
-import org.springproject.exception.InvalidAccessTokenException;
-import org.springproject.exception.UserExistsException;
-import org.springproject.exception.UserNotFoundException;
+import org.springproject.exception.*;
 
 @RestControllerAdvice
 public class GlobalExceptionHandlerAdvice {
@@ -59,6 +56,20 @@ public class GlobalExceptionHandlerAdvice {
 
     @ExceptionHandler(InvalidAccessTokenException.class)
     public ResponseEntity<ErrorResponse> handleInvalidTokenException(InvalidAccessTokenException e){
+
+        return  ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body(
+                        ErrorResponse.builder()
+                                .errorCode(e.getErrorCode())
+                                .errorMessage(e.getMessage())
+                                .build()
+                );
+
+
+    }
+
+    @ExceptionHandler(PasswordDoesNotMatchException.class)
+    public ResponseEntity<ErrorResponse> handlePasswordsDoesNotMatchException(PasswordDoesNotMatchException e){
 
         return  ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                 .body(

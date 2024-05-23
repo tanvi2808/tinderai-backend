@@ -1,4 +1,4 @@
-package org.springproject.model;
+package org.springproject.dto.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class SignUpResponse {
+public class ChangePasswordReqDto {
 
-    private String accessToken;
+    String email;
+    String oldPwd;
+    String newPwd;
 }

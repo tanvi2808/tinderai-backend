@@ -1,4 +1,4 @@
-package org.springproject.model;
+package org.springproject.service.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

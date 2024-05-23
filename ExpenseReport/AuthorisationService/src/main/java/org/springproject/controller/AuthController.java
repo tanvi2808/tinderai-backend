@@ -6,12 +6,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springproject.constants.LoggingConstants;
-import org.springproject.dto.AuthRequest;
-import org.springproject.dto.AuthResponse;
-import org.springproject.dto.VerifyAccessTokenRequest;
+import org.springproject.dto.auth.AuthRequest;
+import org.springproject.dto.auth.AuthResponse;
+import org.springproject.dto.auth.VerifyAccessTokenRequest;
 import org.springproject.mapper.AuthRequestMapper;
-import org.springproject.dto.VerifyAccessTokenResponse;
-import org.springproject.service.AuthService;
+import org.springproject.dto.auth.VerifyAccessTokenResponse;
+import org.springproject.service.auth.AuthService;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -25,9 +25,9 @@ public class AuthController {
 
     @PostMapping("/sign-up")
     ResponseEntity<AuthResponse> signUp(@RequestBody AuthRequest authRequest) {
-       String methodName = "signUp";
+       String methodName = "AuthController:signUp";
 
-       log.info(LoggingConstants.START_INFO_CONSTANT, classname, methodName, authRequest);
+       log.info(LoggingConstants.START_INFO_CONSTANT, methodName, authRequest);
         String accessToken = authService.signUp(AuthRequestMapper.INSTANCE.mapToSignUp(authRequest));
 
         log.info(LoggingConstants.END_INFO_CONSTANT, classname,methodName);

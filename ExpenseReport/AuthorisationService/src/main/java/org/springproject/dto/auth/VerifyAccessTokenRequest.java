@@ -1,15 +1,13 @@
-package org.springproject.dto;
+package org.springproject.dto.auth;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class VerifyAccessTokenResponse {
+public class VerifyAccessTokenRequest {
 
-    Long userId;
+    private String accessToken;
 }
