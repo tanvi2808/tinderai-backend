@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springproject.controller.dto.ErrorResponse;
 import org.springproject.exceptions.ExpCatAlreadyExistsException;
 import org.springproject.exceptions.ExpCatNotFoundException;
+import org.springproject.exceptions.ExpenseNotFoundException;
 
 @RestControllerAdvice
 @Slf4j
@@ -30,6 +31,18 @@ public class GlobalExceptionHandler {
                 .status(HttpStatus.NOT_FOUND)
                 .body(ErrorResponse.builder()
                         .errorCode(e.getErrorCode()).errorMessage(e.getMessage()).build());
+
+    }
+
+    @ExceptionHandler(ExpenseNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleExpenseNotFound(ExpenseNotFoundException e){
+
+        return  ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(ErrorResponse.builder()
+                        .errorCode(e.getErrorCode())
+                        .errorMessage(e.getMessage())
+                        .build());
 
     }
 }

@@ -1,0 +1,15 @@
+spring:
+  application:
+    name=et-expense-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/expenseDB
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: Tanvi@2808
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+server:
+  port: 8083
+

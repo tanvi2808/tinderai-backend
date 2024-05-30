@@ -1,0 +1,22 @@
+services:
+  et-uat-db:
+    image: uat-db
+    container_name: et-uat-db
+    ports:
+      - 3307:3306
+    networks:
+      - backend
+  et-uat:
+    image: et-user-auth-service
+    container_name: et-uat
+    ports:
+      - 8082:8082
+    depends_on:
+      - et-uat-db
+    networks:
+      - backend
+
+networks:
+  backend:
+    name: backend
+    driver: bridge

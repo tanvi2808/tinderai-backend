@@ -14,14 +14,14 @@ import org.springproject.service.ExpCatService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/expenses")
+@RequestMapping("/api/users")
 @Slf4j
 public class ExpenseCatController {
 
     @Autowired
     ExpCatService expCatService;
 
-    @PostMapping("{userId}/categories/addNew")
+    @PostMapping("{userId}/categories")
     public ResponseEntity<ExpenseCategory> addNewExpenseCat(@PathVariable Long userId,
                                                             @RequestBody ExpCatRequest expCatRequest) {
         String methodName = "UserExpenseController:addNewExpenseCat";

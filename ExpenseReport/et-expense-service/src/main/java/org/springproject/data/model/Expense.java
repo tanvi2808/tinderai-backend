@@ -1,36 +1,43 @@
 package org.springproject.data.model;
 
-
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.Instant;
 
 @Entity
-@Table(indexes = @Index(name = "userid_expcatId", columnList = "userId,expenseCatId",unique = true))
-@Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ExpenseCategory {
+@Builder
+@Table(name = "expense")
+public class Expense {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    Long expenseId;
 
-    Long expenseCatId;
-
-    @Column
-    String expCat;
     @Column
     Long userId;
 
     @Column
+    String expenseTitle;
+
+    @Column
+    Double amount;
+
+    @ManyToOne
+    @JoinColumn(name="expenseCatId", referencedColumnName = "expenseCatId")
+    ExpenseCategory expenseCat;
+
     @CreationTimestamp
     Instant createdAt;
 
-    @Column
     @UpdateTimestamp
     Instant modifiedAt;
 
