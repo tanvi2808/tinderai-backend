@@ -10,6 +10,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>AuthorisationService</module>
+        <module>et-expense-service</module>
+        <module>et-reports-service</module>
     </modules>
 
     <properties>
