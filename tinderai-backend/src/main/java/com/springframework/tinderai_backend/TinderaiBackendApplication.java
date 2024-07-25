@@ -28,6 +28,8 @@ public class TinderaiBackendApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+
+
 		Profile profile = new Profile(
 				"1",
 				"Georgia",
@@ -39,7 +41,20 @@ public class TinderaiBackendApplication implements CommandLineRunner {
 				"ENTI"
 		);
 
+
+
 		profileRepository.save(profile);
+		Profile profile2 = new Profile(
+				"2",
+				"Matin",
+				"Hajou",
+				"Irish",
+				"30",
+				"Science lover",
+				Gender.FEMALE,
+				"INTI"
+		);
+		profileRepository.save(profile2);
 		profileRepository.findAll().forEach(System.out::println);
 
 
@@ -49,6 +64,6 @@ public class TinderaiBackendApplication implements CommandLineRunner {
 						LocalDateTime.now()
 				)));
 		conversationRepository.save(conversation);
-		conversationRepository.findAll().forEach(System.out::println);
+	//	conversationRepository.findAll().forEach(System.out::println);
 	}
 }
